@@ -1,0 +1,30 @@
+.NotesPage {
+    align-items: stretch;
+    background-color: #fff;
+    display: flex;
+    height: 100%;
+    overflow: hidden;
+    width: 100%;
+
+    .notification {
+        padding: 20px;
+    }
+
+    .createNoteButton {
+        display: block;
+        margin: 20px auto 0;
+        width: 281px;
+    }
+
+    .notesList {
+        height: 100%;
+        overflow-y: scroll;
+    }
+
+    .loader {
+        z-index: 20;
+        position: relative;
+        flex: 1;
+        height: 100%;
+    }
+}
