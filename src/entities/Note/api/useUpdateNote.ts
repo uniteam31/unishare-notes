@@ -1,8 +1,8 @@
 import { useCallback, useState } from 'react';
 import { axiosInstance } from 'shared/api';
 import { getApiResponseErrorMessage } from 'shared/lib';
-import { ApiResponse } from 'shared/types';
-import type { INote, TNoteFormFields } from '../model/types/note';
+import type { ApiResponse } from 'shared/types';
+import type { INote, TNoteFormFields } from '../index';
 
 interface IUpdateNoteProps {
 	id: INote['_id'];

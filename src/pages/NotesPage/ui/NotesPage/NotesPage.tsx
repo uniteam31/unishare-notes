@@ -1,8 +1,9 @@
 import React, { useCallback, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 // import { useNavigationStore } from '../../../../../../unishare-frontend/src/entities/Navigation';
-import { Note, useCreateNote, TNoteFormFields, useGetNotes, useNoteStore } from 'entities/Note';
-import type { INote } from 'entities/Note';
+import type { INote, TNoteFormFields } from 'entities/Note';
+import { Note, useCreateNote, useNoteStore } from 'entities/Note';
+import { useGetNotes } from 'entities/Note';
 import { FormWrapper } from 'shared/lib';
 import { Button, LoadScreen, Warning, Divider } from 'shared/ui';
 import { Form } from '../Form/Form';

@@ -1,1 +1,2 @@
-export { ApiResponse, TMeta } from '@uniteam31/uni-shared-toolkit';
+/** Common API */
+export type { ApiResponse, TMeta } from '@uniteam31/uni-shared-types';

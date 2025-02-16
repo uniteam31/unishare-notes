@@ -1,8 +1,8 @@
 import { useCallback, useState } from 'react';
 import { axiosInstance } from 'shared/api';
 import { getApiResponseErrorMessage } from 'shared/lib';
-import { ApiResponse } from 'shared/types';
-import type { INote } from '../model/types/note';
+import type { ApiResponse } from 'shared/types';
+import type { INote } from '../index';
 
 interface IDeleteNoteProps {
 	id: INote['_id'];

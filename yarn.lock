@@ -2442,6 +2442,11 @@
     react "18.3.1"
     react-dom "18.3.1"
 
+"@uniteam31/uni-shared-types@0.0.2":
+  version "0.0.2"
+  resolved "https://npm.pkg.github.com/download/@uniteam31/uni-shared-types/0.0.2/84fa719c28286c51db16a115d995b9f786dc12a9#84fa719c28286c51db16a115d995b9f786dc12a9"
+  integrity sha512-s82wpJfE+8Y/jOsJcEdlGkLy5Xc15oqexgLU3/o4kE8vN24R4g5T0WuQ1G9A/nned35lVwMPpfqU5UsrBh8ZOw==
+
 "@uniteam31/uni-shared-ui@^0.0.13":
   version "0.0.13"
   resolved "https://npm.pkg.github.com/download/@uniteam31/uni-shared-ui/0.0.13/97f882a8593f1ea45b080db85c455beaf99ce298#97f882a8593f1ea45b080db85c455beaf99ce298"
