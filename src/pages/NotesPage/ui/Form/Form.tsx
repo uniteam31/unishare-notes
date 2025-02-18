@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect } from 'react';
 import { useController, useFormContext } from 'react-hook-form';
-import { Note, useDeleteNote, useNoteStore, useUpdateNote, useGetNotes } from 'entities/Note';
 import type { INote, TNoteFormFields } from 'entities/Note';
+import { Note, useDeleteNote, useGetNotes, useNoteStore, useUpdateNote } from 'entities/Note';
 import { useDebounce } from 'shared/hooks';
 import { LoadScreen } from 'shared/ui';
 import s from './Form.module.scss';

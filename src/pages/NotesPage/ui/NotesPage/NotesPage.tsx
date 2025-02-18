@@ -1,18 +1,20 @@
 import React, { useCallback, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-// import { useNavigationStore } from '../../../../../../unishare-frontend/src/entities/Navigation';
-import type { INote, TNoteFormFields } from 'entities/Note';
-import { Note, useCreateNote, useNoteStore } from 'entities/Note';
-import { useGetNotes } from 'entities/Note';
+// import { useNavigationStore } from 'entities/Navigation';
+import { Note, useCreateNote, TNoteFormFields, useGetNotes, useNoteStore } from 'entities/Note';
+import type { INote } from 'entities/Note';
 import { FormWrapper } from 'shared/lib';
-import { Button, LoadScreen, Warning, Divider } from 'shared/ui';
+import { Button, LoadScreen, Warning } from 'shared/ui';
+import { Divider } from 'shared/ui';
 import { Form } from '../Form/Form';
 import s from './NotesPage.module.scss';
 
-const NotesPage = () => {
+export const NotesPage = () => {
 	const { selectedNote, setSelectedNote } = useNoteStore();
-	// const { setCurrentService } = useNavigationStore();
 
+	// TODO починить
+	// const { setCurrentService } = useNavigationStore();
+	//
 	// useEffect(() => {
 	// 	setCurrentService('/notes');
 	// }, [setCurrentService]);
@@ -89,5 +91,3 @@ const NotesPage = () => {
 		</div>
 	);
 };
-
-export default NotesPage;

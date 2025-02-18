@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import type { INote } from '../../index';
+import { INote } from '../types/note';
 
 interface INoteStore {
 	selectedNote: INote | null;

@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react';
 import { axiosInstance } from 'shared/api';
 import { getApiResponseErrorMessage } from 'shared/lib';
 import type { ApiResponse } from 'shared/types';
-import type { INote, TNoteFormFields } from '../index';
+import type { INote, TNoteFormFields } from '../model/types/note';
 
 type TCreateNoteResponse = ApiResponse<INote>;
 

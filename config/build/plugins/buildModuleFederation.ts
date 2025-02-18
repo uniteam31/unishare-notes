@@ -8,21 +8,26 @@ export const buildModuleFederation = () => {
 		//
 		exposes: {
 			'./App': 'app/App.tsx',
+			'./Widget': 'widgets/NoteWidget/index.ts',
 		},
 		shared: {
 			...packageJson.dependencies,
-			// 	react: {
-			// 		eager: true,
-			// 		// requiredVersion: packageJson.dependencies['react'],
-			// 	},
-			// 	'react-router-dom': {
-			// 		eager: true,
-			// 		// requiredVersion: packageJson.dependencies['react-router-dom'],
-			// 	},
-			// 	'react-dom': {
-			// 		eager: true,
-			// 		// requiredVersion: packageJson.dependencies['react-dom'],
-			// 	},
+			react: {
+				singleton: true,
+				requiredVersion: packageJson.dependencies['react'],
+			},
+			'react-router-dom': {
+				singleton: true,
+				requiredVersion: packageJson.dependencies['react-router-dom'],
+			},
+			'react-dom': {
+				singleton: true,
+				requiredVersion: packageJson.dependencies['react-dom'],
+			},
+			zustand: {
+				singleton: true,
+				requiredVersion: packageJson.dependencies['zustand'],
+			},
 		},
 	});
 };

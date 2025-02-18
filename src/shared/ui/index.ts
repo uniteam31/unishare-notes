@@ -6,6 +6,10 @@ export {
 	LoadScreen,
 	//
 	Button,
+	//
+	Divider,
+	//
+	Link,
+	//
+	Widget,
 } from '@uniteam31/uni-shared-ui';
-
-export { Divider } from './Divider/Divider';
