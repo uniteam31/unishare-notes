@@ -1,0 +1,28 @@
+.ListItem {
+    background-color: #fff;
+    border-radius: 12px;
+    height: 80px;
+    padding: 15px 20px;
+    width: 100%;
+
+    .title, .text, .date {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .title {
+        font: var(--font-callout);
+        font-weight: 500;
+    }
+
+    .text {
+        font: var(--font-caption);
+        font-weight: 100;
+    }
+
+    .date {
+        font: var(--font-caption);
+        font-weight: 300;
+    }
+}
