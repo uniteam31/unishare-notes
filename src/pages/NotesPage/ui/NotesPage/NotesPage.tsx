@@ -1,8 +1,7 @@
 import React, { useCallback, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-// import { useNavigationStore } from 'entities/Navigation';
-import { Note, useCreateNote, TNoteFormFields, useGetNotes, useNoteStore } from 'entities/Note';
-import type { INote } from 'entities/Note';
+import { Note, useCreateNote, useGetNotes, useNoteStore } from 'entities/Note';
+import type { INote, TNoteFormFields } from 'entities/Note';
 import { FormWrapper } from 'shared/lib';
 import { Button, LoadScreen, Warning } from 'shared/ui';
 import { Divider } from 'shared/ui';
@@ -11,13 +10,6 @@ import s from './NotesPage.module.scss';
 
 export const NotesPage = () => {
 	const { selectedNote, setSelectedNote } = useNoteStore();
-
-	// TODO починить
-	// const { setCurrentService } = useNavigationStore();
-	//
-	// useEffect(() => {
-	// 	setCurrentService('/notes');
-	// }, [setCurrentService]);
 
 	const { notes, isLoading: isNotesLoading, error: getNotesError, mutateNotes } = useGetNotes();
 	const { createNote, isLoading: isNoteCreating, error: createNoteError } = useCreateNote();

@@ -3,16 +3,3 @@
 body {
   font-family: var(--font-family-main), sans-serif;
 }
-
-.App {
-  height: 100vh; // растягивание контента в App на всю высоту
-}
-
-.content-page {
-  //background-image: url('shared/assets/bg.jpeg');
-  //background-position: 50%;
-  //background-size: cover;
-
-  // TODO можно вынести в переменную
-  padding-top: 50px;
-}

@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import React, { useCallback } from 'react';
 import { Note, useGetNotes, useNoteStore } from 'entities/Note';
-import { INote } from 'entities/Note';
+import type { INote } from 'entities/Note';
 import NoteIcon from 'shared/assets/icons/note.svg';
 import { Skeleton, Warning } from 'shared/ui';
 import { Link, Widget } from 'shared/ui';
