@@ -5,7 +5,7 @@ pipeline {
         NODEJS_HOME = "${tool 'node21'}"
         PATH = "${env.NODEJS_HOME}/bin:${env.PATH}"
 
-        REPO_URL = "https://github.com/uniteam31/unishare-frontend.git"
+        REPO_URL = "https://github.com/uniteam31/unishare-notes.git"
         API_URL = "https://dev.unishare.space/api"
         DEV_SERVER_IP = "176.114.90.241"
 
