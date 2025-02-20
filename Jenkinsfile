@@ -6,13 +6,14 @@ pipeline {
         PATH = "${env.NODEJS_HOME}/bin:${env.PATH}"
 
         REPO_URL = "https://github.com/uniteam31/unishare-notes.git"
+        API_URL = "https://dev.unishare.space/api"
+        DEV_SERVER_IP = "176.114.90.241"
+
         BRANCH_NAME = "${env.BRANCH_NAME ?: 'dev'}"
         DOCKER_IMAGE_NAME = "def1s/unishare-notes"
         DOCKER_REGISTRY = "https://registry.hub.docker.com"
         DOCKER_CREDENTIALS_ID = "docker-def1s"
-        DEV_SERVER_IP = "176.114.90.241"
         DEPLOY_SCRIPT_PATH = "/root/unishare-orchestration/deploy.sh"
-        API_URL = "http://176.114.90.241/api"
         NPMRC_CONFIG_FILE_ID = "uniteam-npmrc"
     }
 
