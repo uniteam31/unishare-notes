@@ -6,5 +6,8 @@ export const BuildDevServer = ({ port }: BuildOptions): WebpackConfiguration['de
 		port: port,
 		historyApiFallback: true, // чтобы не падало при перезагрузке на маршруте
 		hot: true,
+		headers: {
+			'Access-Control-Allow-Origin': '*',
+		},
 	};
 };
