@@ -1,31 +1,38 @@
+import { Placeholder } from '@tiptap/extension-placeholder';
+import { EditorContent, useEditor } from '@tiptap/react';
+import { StarterKit } from '@tiptap/starter-kit';
 import classNames from 'classnames';
-import React, { ChangeEvent, TextareaHTMLAttributes } from 'react';
+import React from 'react';
+import { BubbleMenuComponent } from '../BubbleMenu/BubbleMenu';
 import s from './TextArea.module.scss';
 
-type HTMLTextAreaProps = Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'value' | 'onChange'>;
+import './Placeholder.scss';
 
-interface ITextAreaProps extends HTMLTextAreaProps {
+interface ITextAreaProps {
 	onChange?: (value: string) => void;
-	value?: string;
-	//
-	className?: string;
+	initialText?: string;
 }
 
 export const TextArea = (props: ITextAreaProps) => {
-	const { onChange, value, className, ...otherProps } = props;
+	const { onChange, initialText } = props;
 
-	const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-		const value = event.target.value;
-		onChange?.(value);
-	};
+	const editor = useEditor({
+		extensions: [
+			StarterKit,
+			Placeholder.configure({
+				placeholder: 'Вы можете выделить текст для форматирования',
+			}),
+		],
+		content: initialText,
+		onUpdate: ({ editor }) => {
+			onChange?.(editor.getHTML());
+		},
+	});
 
 	return (
-		<textarea
-			onChange={handleChange}
-			className={classNames(s.TextArea, className)}
-			value={value}
-			placeholder={'Введите текст заметки...'}
-			{...otherProps}
-		></textarea>
+		<>
+			<BubbleMenuComponent editor={editor} />
+			<EditorContent editor={editor} className={classNames(s.TextArea)} />
+		</>
 	);
 };

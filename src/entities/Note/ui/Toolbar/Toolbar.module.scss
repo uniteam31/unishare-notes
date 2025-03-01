@@ -1,0 +1,24 @@
+.Toolbar {
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  background: #f3f3f3;
+  border-bottom: 1px solid #ddd;
+
+  button {
+    background: none;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 14px;
+
+    &:hover {
+      background: #e0e0e0;
+    }
+
+    &.active {
+      background: black;
+      color: white;
+    }
+  }
+}

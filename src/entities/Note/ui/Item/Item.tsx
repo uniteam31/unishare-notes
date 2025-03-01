@@ -35,7 +35,7 @@ export const Item = (props: INoteProps) => {
 				className={s.title}
 			/>
 
-			<TextArea value={text} onChange={onChangeText} />
+			<TextArea initialText={text} onChange={onChangeText} />
 		</div>
 	);
 };

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { Note, useCreateNote, useGetNotes, useNoteStore } from 'entities/Note';
 import type { INote, TNoteFormFields } from 'entities/Note';
@@ -71,9 +71,13 @@ export const NotesPage = () => {
 
 			<Divider />
 
-			<FormWrapper<TNoteFormFields> methods={methods}>
+			<FormWrapper<Pick<TNoteFormFields, 'title'>> methods={methods}>
 				{!isNoteCreating && createNoteError && (
-					<Warning title={'Ошибка создания заметки'} text={createNoteError} />
+					<Warning
+						title={'Ошибка создания заметки'}
+						text={createNoteError}
+						theme={'red'}
+					/>
 				)}
 
 				{isNoteCreating && <LoadScreen label={'Заметка создается'} className={s.loader} />}
