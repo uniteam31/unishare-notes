@@ -1,10 +1,11 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { Note, useCreateNote, useGetNotes, useNoteStore } from 'entities/Note';
 import type { INote, TNoteFormFields } from 'entities/Note';
 import { FormWrapper } from 'shared/lib';
 import { Button, LoadScreen, Warning } from 'shared/ui';
 import { Divider } from 'shared/ui';
+import type { ControlledNoteFormFields } from '../../model/controlledNoteFormFields';
 import { Form } from '../Form/Form';
 import s from './NotesPage.module.scss';
 
@@ -71,9 +72,13 @@ export const NotesPage = () => {
 
 			<Divider />
 
-			<FormWrapper<TNoteFormFields> methods={methods}>
+			<FormWrapper<ControlledNoteFormFields> methods={methods}>
 				{!isNoteCreating && createNoteError && (
-					<Warning title={'Ошибка создания заметки'} text={createNoteError} />
+					<Warning
+						title={'Ошибка создания заметки'}
+						text={createNoteError}
+						theme={'red'}
+					/>
 				)}
 
 				{isNoteCreating && <LoadScreen label={'Заметка создается'} className={s.loader} />}

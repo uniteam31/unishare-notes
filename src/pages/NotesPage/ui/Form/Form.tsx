@@ -4,10 +4,11 @@ import type { INote, TNoteFormFields } from 'entities/Note';
 import { Note, useDeleteNote, useGetNotes, useNoteStore, useUpdateNote } from 'entities/Note';
 import { useDebounce } from 'shared/hooks';
 import { LoadScreen } from 'shared/ui';
+import type { ControlledNoteFormFields } from '../../model/controlledNoteFormFields';
 import s from './Form.module.scss';
 
 export const Form = () => {
-	const { control, setValue, watch } = useFormContext<TNoteFormFields>();
+	const { control, setValue, watch } = useFormContext<ControlledNoteFormFields>();
 	const { notes, mutateNotes } = useGetNotes();
 	const { selectedNote, setSelectedNote } = useNoteStore();
 
@@ -15,23 +16,22 @@ export const Form = () => {
 	const { deleteNote, isLoading: isDeletingNote, error: deleteNoteError } = useDeleteNote();
 	const { updateNote, error: updateNoteError } = useUpdateNote();
 
-	const setSelectedNoteFormValues = useCallback(() => {
+	const setSelectedNoteTitle = useCallback(() => {
 		if (!selectedNote) {
 			return;
 		}
 
 		setValue('title', selectedNote.title);
-		setValue('text', selectedNote.text);
 	}, [selectedNote, setValue]);
 
 	useEffect(() => {
-		setSelectedNoteFormValues();
-	}, [setSelectedNoteFormValues]);
+		setSelectedNoteTitle();
+	}, [setSelectedNoteTitle]);
 
 	const updateCachedNote = useCallback(
-		(selectedNote: INote, values: TNoteFormFields) => {
+		(selectedNoteID: INote['_id'], values: TNoteFormFields) => {
 			const updatedNotes = notes.map((note) =>
-				note._id === selectedNote._id ? { ...note, ...values } : note,
+				note._id === selectedNoteID ? { ...note, ...values } : note,
 			);
 
 			mutateNotes(updatedNotes, false).finally(); // обновляем кэш с новыми данными
@@ -41,10 +41,10 @@ export const Form = () => {
 
 	/** Функция, посылающая новые данные заметки на сервер после ее изменения */
 	const handleSubmitNoteForm = useCallback(
-		(selectedNote: INote, updatedNoteValues: TNoteFormFields) => {
+		(selectedNoteID: INote['_id'], updatedNoteValues: TNoteFormFields) => {
 			/** Вызываем обновление заметки только после изменения данных формы */
-			updateNote({ body: updatedNoteValues, id: selectedNote._id }).then(() => {
-				updateCachedNote(selectedNote, updatedNoteValues);
+			updateNote({ id: selectedNoteID, body: updatedNoteValues }).then(() => {
+				updateCachedNote(selectedNoteID, updatedNoteValues);
 			});
 		},
 		[updateCachedNote, updateNote],
@@ -52,22 +52,22 @@ export const Form = () => {
 
 	const debouncedHandleSubmitNoteForm = useDebounce(handleSubmitNoteForm, 500);
 
-	const getSubscribeOnNoteFormChanges = useCallback(() => {
+	const getSubscribeOnNoteTitleChanges = useCallback(() => {
 		return watch((values) => {
 			if (!selectedNote) {
 				return;
 			}
 
-			debouncedHandleSubmitNoteForm(selectedNote, values);
+			debouncedHandleSubmitNoteForm(selectedNote._id, values);
 		});
 	}, [debouncedHandleSubmitNoteForm, selectedNote, watch]);
 
 	useEffect(() => {
-		const subscription = getSubscribeOnNoteFormChanges();
+		const subscription = getSubscribeOnNoteTitleChanges();
 
 		/** Очистка подписки при размонтировании компонента */
 		return () => subscription.unsubscribe();
-	}, [getSubscribeOnNoteFormChanges]);
+	}, [getSubscribeOnNoteTitleChanges]);
 
 	const deleteNoteFromCache = useCallback(
 		(id: INote['_id']) => {
@@ -97,30 +97,37 @@ export const Form = () => {
 		defaultValue: selectedNote?.title,
 	});
 
-	const {
-		field: { value: text, onChange: onChangeText },
-	} = useController<TNoteFormFields>({
-		name: 'text',
-		control,
-		defaultValue: selectedNote?.text,
-	});
+	const handleChangeText = useCallback(
+		(text: string) => {
+			const values = {
+				text,
+			};
+
+			debouncedHandleSubmitNoteForm(selectedNote?._id, values);
+		},
+		[debouncedHandleSubmitNoteForm, selectedNote],
+	);
 
 	if (isDeletingNote) {
 		return <LoadScreen className={s.loader} label={'Заметка удаляется...'} />;
 	}
 
 	if (!selectedNote) {
-		return;
+		return null;
 	}
 
 	return (
 		<Note.Item
+			key={selectedNote._id}
+			//
 			onChangeTitle={onChangeTitle}
-			onChangeText={onChangeText}
-			title={title}
-			text={text}
+			onChangeText={handleChangeText}
 			onDelete={handleNoteDelete}
+			//
 			_id={selectedNote._id}
+			title={title}
+			text={selectedNote.text}
+			//
 			createdAt={selectedNote.createdAt}
 			updatedAt={selectedNote.updatedAt}
 			author={selectedNote.author}

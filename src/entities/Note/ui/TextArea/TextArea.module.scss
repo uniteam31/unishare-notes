@@ -1,12 +1,13 @@
-.TextArea {
-    all: unset;
+.TextArea > div {
+	height: 100%;
+	outline: none;
+	width: 100%;
+}
 
-    //
-    background-color: #fff;
-    font: var(--font-body);
-    font-weight: 300;
-    height: 100%;
-    overflow-wrap: break-word;
-    resize: none;
-    width: 100%;
+.TextArea > div > p {
+	margin-bottom: var(--small-indent);
+}
+
+.TextArea > div > ol, ul {
+	margin-left: var(--medium-indent);
 }
