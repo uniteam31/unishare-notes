@@ -4,10 +4,11 @@ import type { INote, TNoteFormFields } from 'entities/Note';
 import { Note, useDeleteNote, useGetNotes, useNoteStore, useUpdateNote } from 'entities/Note';
 import { useDebounce } from 'shared/hooks';
 import { LoadScreen } from 'shared/ui';
+import type { ControlledNoteFormFields } from '../../model/controlledNoteFormFields';
 import s from './Form.module.scss';
 
 export const Form = () => {
-	const { control, setValue, watch } = useFormContext<Pick<TNoteFormFields, 'title'>>();
+	const { control, setValue, watch } = useFormContext<ControlledNoteFormFields>();
 	const { notes, mutateNotes } = useGetNotes();
 	const { selectedNote, setSelectedNote } = useNoteStore();
 
