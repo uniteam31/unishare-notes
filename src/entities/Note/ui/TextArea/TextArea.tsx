@@ -11,10 +11,11 @@ import './Placeholder.scss';
 interface ITextAreaProps {
 	onChange?: (value: string) => void;
 	initialText?: string;
+	editable?: boolean;
 }
 
 export const TextArea = (props: ITextAreaProps) => {
-	const { onChange, initialText } = props;
+	const { onChange, initialText, editable = true } = props;
 
 	const editor = useEditor({
 		extensions: [
@@ -27,11 +28,13 @@ export const TextArea = (props: ITextAreaProps) => {
 		onUpdate: ({ editor }) => {
 			onChange?.(editor.getHTML());
 		},
+		editable,
 	});
 
 	return (
 		<>
 			<BubbleMenuComponent editor={editor} />
+
 			<EditorContent editor={editor} className={classNames(s.TextArea)} />
 		</>
 	);

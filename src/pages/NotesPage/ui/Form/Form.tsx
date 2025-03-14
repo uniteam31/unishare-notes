@@ -2,6 +2,7 @@ import React, { useCallback, useEffect } from 'react';
 import { useController, useFormContext } from 'react-hook-form';
 import type { INote, TNoteFormFields } from 'entities/Note';
 import { Note, useDeleteNote, useGetNotes, useNoteStore, useUpdateNote } from 'entities/Note';
+import { useUserStore } from 'entities/User';
 import { useDebounce } from 'shared/hooks';
 import { LoadScreen } from 'shared/ui';
 import type { ControlledNoteFormFields } from '../../model/controlledNoteFormFields';
@@ -9,9 +10,11 @@ import s from './Form.module.scss';
 
 export const Form = () => {
 	const { control, setValue, watch } = useFormContext<ControlledNoteFormFields>();
-	const { notes, mutateNotes } = useGetNotes();
-	const { selectedNote, setSelectedNote } = useNoteStore();
 
+	const { selectedNote, setSelectedNote } = useNoteStore();
+	const { authData } = useUserStore();
+
+	const { notes, mutateNotes } = useGetNotes();
 	// TODO в будущем добавить уведомление на ошибки
 	const { deleteNote, isLoading: isDeletingNote, error: deleteNoteError } = useDeleteNote();
 	const { updateNote, error: updateNoteError } = useUpdateNote();
@@ -116,6 +119,8 @@ export const Form = () => {
 		return null;
 	}
 
+	const isNoteEditable = selectedNote.ownerID === authData?._id;
+
 	return (
 		<Note.Item
 			key={selectedNote._id}
@@ -130,7 +135,9 @@ export const Form = () => {
 			//
 			createdAt={selectedNote.createdAt}
 			updatedAt={selectedNote.updatedAt}
-			author={selectedNote.author}
+			ownerID={selectedNote.ownerID}
+			//
+			editable={isNoteEditable}
 		/>
 	);
 };
