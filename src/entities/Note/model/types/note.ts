@@ -8,7 +8,7 @@ export type TNoteFormFields = {
 
 /** Данные заметки */
 export type TNodeData = TNoteFormFields & {
-	author: string;
+	ownerID: TMeta['_id'];
 };
 
 /** Целый экземпляр */

@@ -7,12 +7,13 @@ type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onC
 interface ITitleInputProps extends HTMLInputProps {
 	onChange?: (value: string) => void;
 	value?: string;
+	editable?: boolean;
 	//
 	className?: string;
 }
 
 export const TitleInput = memo((props: ITitleInputProps) => {
-	const { onChange, value, className, ...otherProps } = props;
+	const { onChange, value, className, editable = true, ...otherProps } = props;
 
 	const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
 		const value = event.target.value;
@@ -24,6 +25,7 @@ export const TitleInput = memo((props: ITitleInputProps) => {
 			className={classNames(s.TitleInput, className)}
 			onChange={handleChange}
 			value={value}
+			disabled={!editable}
 			{...otherProps}
 		></input>
 	);
