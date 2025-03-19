@@ -5,7 +5,7 @@ import type { ApiResponse } from 'shared/types';
 import type { INote } from '../model/types/note';
 
 interface IDeleteNoteProps {
-	id: INote['_id'];
+	id: INote['id'];
 }
 
 type TDeleteNoteResponse = ApiResponse<null>;

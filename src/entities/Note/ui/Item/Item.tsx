@@ -11,7 +11,7 @@ interface INoteProps extends INote {
 	onChangeTitle: (title: string) => void;
 	onChangeText: (text: string) => void;
 	//
-	onDelete?: (id: INote['_id']) => void;
+	onDelete?: (id: INote['id']) => void;
 	//
 	editable?: boolean;
 	className?: string;
@@ -21,11 +21,11 @@ interface INoteProps extends INote {
 export const Item = (props: INoteProps) => {
 	const { onChangeText, onChangeTitle } = props;
 	const { title, text, className, editable = true } = props;
-	const { _id, onDelete } = props;
+	const { id, onDelete } = props;
 
 	return (
 		<div className={classNames(s.Item, className)}>
-			{editable && <TrashIcon className={s.trashIcon} onClick={() => onDelete?.(_id)} />}
+			{editable && <TrashIcon className={s.trashIcon} onClick={() => onDelete?.(id)} />}
 
 			{/*<div>{formatDate(new Date(date || 0))}</div>*/}
 
