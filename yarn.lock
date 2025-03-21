@@ -2776,10 +2776,10 @@
   resolved "https://npm.pkg.github.com/download/@uniteam31/uni-shared-toolkit/0.0.2/8611de6455cdd59012d4a6686a123b7f12f15da4#8611de6455cdd59012d4a6686a123b7f12f15da4"
   integrity sha512-0eZ29UBLf0fbDos3Oo9yclLjTcZJ7sKO12FR7cBQjAvkXGSwd82BwJkdc6H6N/MT1fQH7jUhwQAA7DZMf1aVnQ==
 
-"@uniteam31/uni-shared-types@0.0.4":
-  version "0.0.4"
-  resolved "https://npm.pkg.github.com/download/@uniteam31/uni-shared-types/0.0.4/d28c6db3fbc5e60a504b7a754d5eda35cff80e40#d28c6db3fbc5e60a504b7a754d5eda35cff80e40"
-  integrity sha512-IYQlDX8qfccrZdnZNCOe41CYj3j4tGUNQHWJ2lwB5pfbHDh4rj+Lrh5dZQt61ZYG+usdv1G/9W7RYmyaBE9cUw==
+"@uniteam31/uni-shared-types@0.0.6":
+  version "0.0.6"
+  resolved "https://npm.pkg.github.com/download/@uniteam31/uni-shared-types/0.0.6/fa6fb6fd958d8833b1e7152e5fe7fdbd69afe2b4#fa6fb6fd958d8833b1e7152e5fe7fdbd69afe2b4"
+  integrity sha512-1u9l870ZxRyCQB0nSEliSRVT4o0HDzqCeQk3nUqXrLAzZwaieDbpeAhYkyVOFuZl3QCNr4Mwh9MXh4E6PFjw/Q==
 
 "@uniteam31/uni-shared-ui@0.0.14":
   version "0.0.14"
