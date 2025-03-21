@@ -32,9 +32,9 @@ export const Form = () => {
 	}, [setSelectedNoteTitle]);
 
 	const updateCachedNote = useCallback(
-		(selectedNoteID: INote['_id'], values: TNoteFormFields) => {
+		(selectedNoteID: INote['id'], values: TNoteFormFields) => {
 			const updatedNotes = notes.map((note) =>
-				note._id === selectedNoteID ? { ...note, ...values } : note,
+				note.id === selectedNoteID ? { ...note, ...values } : note,
 			);
 
 			mutateNotes(updatedNotes, false).finally(); // обновляем кэш с новыми данными
@@ -44,7 +44,7 @@ export const Form = () => {
 
 	/** Функция, посылающая новые данные заметки на сервер после ее изменения */
 	const handleSubmitNoteForm = useCallback(
-		(selectedNoteID: INote['_id'], updatedNoteValues: TNoteFormFields) => {
+		(selectedNoteID: INote['id'], updatedNoteValues: TNoteFormFields) => {
 			/** Вызываем обновление заметки только после изменения данных формы */
 			updateNote({ id: selectedNoteID, body: updatedNoteValues }).then(() => {
 				updateCachedNote(selectedNoteID, updatedNoteValues);
@@ -61,7 +61,7 @@ export const Form = () => {
 				return;
 			}
 
-			debouncedHandleSubmitNoteForm(selectedNote._id, values);
+			debouncedHandleSubmitNoteForm(selectedNote.id, values);
 		});
 	}, [debouncedHandleSubmitNoteForm, selectedNote, watch]);
 
@@ -73,10 +73,10 @@ export const Form = () => {
 	}, [getSubscribeOnNoteTitleChanges]);
 
 	const deleteNoteFromCache = useCallback(
-		(id: INote['_id']) => {
+		(id: INote['id']) => {
 			setSelectedNote(null);
 
-			const updatedNotes = notes.filter((note) => id !== note._id);
+			const updatedNotes = notes.filter((note) => id !== note.id);
 
 			mutateNotes(updatedNotes, false).finally();
 		},
@@ -84,7 +84,7 @@ export const Form = () => {
 	);
 
 	const handleNoteDelete = useCallback(
-		(id: INote['_id']) => {
+		(id: INote['id']) => {
 			deleteNote({ id }).then(() => {
 				deleteNoteFromCache(id);
 			});
@@ -106,7 +106,7 @@ export const Form = () => {
 				text,
 			};
 
-			debouncedHandleSubmitNoteForm(selectedNote?._id, values);
+			debouncedHandleSubmitNoteForm(selectedNote?.id, values);
 		},
 		[debouncedHandleSubmitNoteForm, selectedNote],
 	);
@@ -119,17 +119,17 @@ export const Form = () => {
 		return null;
 	}
 
-	const isNoteEditable = selectedNote.ownerID === authData?._id;
+	const isNoteEditable = selectedNote.ownerID === authData?.id;
 
 	return (
 		<Note.Item
-			key={selectedNote._id}
+			key={selectedNote.id}
 			//
 			onChangeTitle={onChangeTitle}
 			onChangeText={handleChangeText}
 			onDelete={handleNoteDelete}
 			//
-			_id={selectedNote._id}
+			id={selectedNote.id}
 			title={title}
 			text={selectedNote.text}
 			//

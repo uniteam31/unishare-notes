@@ -93,7 +93,7 @@
 		"@tiptap/starter-kit": "2.11.5",
 		"@tiptap/suggestion": "2.11.5",
 		"@uniteam31/uni-shared-toolkit": "0.0.2",
-		"@uniteam31/uni-shared-types": "0.0.4",
+		"@uniteam31/uni-shared-types": "0.0.6",
 		"@uniteam31/uni-shared-ui": "0.0.14",
 		"axios": "1.7.9",
 		"classnames": "2.5.1",

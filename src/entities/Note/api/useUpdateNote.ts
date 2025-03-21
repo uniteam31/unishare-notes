@@ -5,7 +5,7 @@ import type { ApiResponse } from 'shared/types';
 import type { INote, TNoteFormFields } from '../model/types/note';
 
 interface IUpdateNoteProps {
-	id: INote['_id'];
+	id: INote['id'];
 	body: TNoteFormFields;
 }
 

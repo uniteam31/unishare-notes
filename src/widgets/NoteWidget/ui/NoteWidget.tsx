@@ -18,8 +18,8 @@ export const NoteWidget = (props: INoteWidgetProps) => {
 	const { setSelectedNote } = useNoteStore();
 
 	const handleNoteClick = useCallback(
-		(id: INote['_id']) => {
-			const selectedNote = notes.find((note) => id === note._id);
+		(id: INote['id']) => {
+			const selectedNote = notes.find((note) => id === note.id);
 
 			if (!selectedNote) {
 				return;
@@ -45,7 +45,7 @@ export const NoteWidget = (props: INoteWidgetProps) => {
 					{!isNotesLoading &&
 						!notesError &&
 						notes.slice(0, 2).map((note) => (
-							<Link to={'/notes'} key={note._id}>
+							<Link to={'/notes'} key={note.id}>
 								<Note.ListItem
 									className={s.note}
 									{...note}
