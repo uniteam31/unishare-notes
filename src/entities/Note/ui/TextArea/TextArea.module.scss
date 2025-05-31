@@ -1,0 +1,14 @@
+.TextArea > div {
+	height: 100%;
+	outline: none;
+	width: 100%;
+}
+
+.TextArea > div > p {
+	margin-bottom: var(--small-indent);
+}
+
+.TextArea > div > ol,
+.TextArea > div > ul {
+	margin-left: var(--medium-indent);
+}
